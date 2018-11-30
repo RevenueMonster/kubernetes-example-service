@@ -12,7 +12,7 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 
 		return c.JSON(200, map[string]interface{}{
-			"message": os.Getenv("SYSTEM_NAME"),
+			"msg": os.Getenv("SYSTEM_NAME"),
 		})
 	})
 
