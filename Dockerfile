@@ -11,13 +11,14 @@ WORKDIR  /go/src/bitbucket.org/revenuemonster/kubernetes-example-service
 
 RUN make
 
-FROM golang:1.10.3
-RUN apt-get update
-RUN apt-get install -y ca-certificates
+FROM alpine
+WORKDIR  /app
 
-COPY --from=builder /go/src/bitbucket.org/revenuemonster/kubernetes-example-service /go/src/app/kubernetes-example-service
+# install ca cert if you want expose the app directly using load balancer
+# RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
+
+COPY --from=builder /go/src/bitbucket.org/revenuemonster/kubernetes-example-service /app/kubernetes-example-service
 
 ENV SYSTEM_NAME 'hello world'
 
-WORKDIR  /go/src/app/kubernetes-example-service
 ENTRYPOINT ./kubernetes-example-service
