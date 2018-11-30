@@ -17,7 +17,7 @@ RUN apt-get install -y ca-certificates
 
 COPY --from=builder /go/src/bitbucket.org/revenuemonster/kubernetes-example-service /go/src/app/kubernetes-example-service
 
-ENV SYSTEM_NAME 'hello worlds'
+ENV SYSTEM_NAME 'hello world'
 
 WORKDIR  /go/src/app/kubernetes-example-service
 ENTRYPOINT ./kubernetes-example-service
