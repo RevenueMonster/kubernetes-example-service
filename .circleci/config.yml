@@ -47,7 +47,6 @@ jobs:
       - deploy:
           name: Set New Image to Deployment
           command: |
-            kubectl apply -f deployment/rm-service.yaml
             kubectl set image deployment rm-service rm-service=registry-intl.ap-southeast-3.aliyuncs.com/findev/kubernetes-example-service:${CIRCLE_SHA1} --namespace=${ENVIRONMENT}
 
 workflows:
