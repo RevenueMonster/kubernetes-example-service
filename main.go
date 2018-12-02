@@ -10,7 +10,7 @@ import (
 var podDescription = ""
 
 func init() {
-	podDescription = "Pod started at " + time.Now().UTC().String()
+	podDescription = "Pod started at " + time.Now().UTC().Format("15:04:05")
 }
 
 func main() {
@@ -19,6 +19,7 @@ func main() {
 	e.GET("/", func(c echo.Context) error {
 
 		return c.JSON(200, map[string]interface{}{
+			"hostname":    os.Getenv("HOSTNAME"),
 			"message":     os.Getenv("SYSTEM_NAME"),
 			"description": podDescription,
 		})
