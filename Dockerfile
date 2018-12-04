@@ -14,5 +14,6 @@ WORKDIR  /app
 # RUN apk update && apk add ca-certificates && rm -rf /var/cache/apk/*
 COPY --from=builder /go/src/bitbucket.org/revenuemonster/kubernetes-example-service /app
 # Container Environment
+# It will be overwrite by deployment env if same key exist
 ENV SYSTEM_NAME 'hello world'
 ENTRYPOINT ./kubernetes-example-service
