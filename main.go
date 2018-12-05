@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/labstack/echo"
@@ -12,7 +13,7 @@ func main() {
 	e.Use(middleware.Logger())
 
 	e.GET("/", func(c echo.Context) error {
-		return c.String(200, os.Getenv("SYSTEM_NAME"))
+		return c.String(200, fmt.Sprintf("%s from pod %s", os.Getenv("SYSTEM_NAME"), os.Getenv("HOSTNAME")))
 	})
 
 	e.Logger.Fatal(e.Start(":5000"))
