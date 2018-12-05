@@ -13,6 +13,7 @@ func main() {
 	e.Use(middleware.Logger())
 
 	e.GET("/", func(c echo.Context) error {
+		return c.String(200, "Hello World")
 		return c.String(200, fmt.Sprintf("%s from pod %s", os.Getenv("SYSTEM_NAME"), os.Getenv("HOSTNAME")))
 	})
 
